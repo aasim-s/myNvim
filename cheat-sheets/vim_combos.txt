@@ -1,0 +1,5 @@
+replace a string and all its occurance in a file with new string.
+:%s/old_text/new_text/g
+
+replace a string with new string in current line
+:s/old_text/new_text/

@@ -1,0 +1,68 @@
+Anotomy of a motion: Command Count Motion
+
+-------------------Normal Mode--------------
+: --> goes into command mode
+i --> goes into insert mode
+v --> goes into visual mode
+C + [ -->  equivalent to escape key
+
+ACTIONS:
+c --> cut
+d --> delete
+x --> delete char
+r --> replace char
+
+NORMAL MOVEMENTS:
+h --> moves left
+j --> moves down
+k --> moves up
+l --> moves right
+w --> moves forward to the start of next word
+b --> moves back to the start of previous word
+
+HORIZONTAL MOVEMENTS:
+0 --> moves to the start of the line
+_ --> moves to the start of the text
+$ --> moves to the end of the text
+I --> moves to the start of the text in insert mode
+A --> moves to th end of the text in insert mode
+o --> creates a new line below the cursor and enters insert mode
+O --> creates a new line above the cursor and enters insert mode
+
+f + key --> moves to the first occurance of the key after your cursor within the sentence
+t + key --> moves right before the first occurance of the key after your cursor within the sentence
+F + key --> moves to the first occurance of the key before your cursor within the sentence
+T + key --> moves right after the first occurance of the key before your cursor within the sentence
+, --> moves to previous result of above cmd within the sentence
+; --> moves to next result of above cmd wiht in the sentence
+
+-----------------ADVANCE HORIZONTAL MOVEMENTS-------------------
+
+V + y ---> same as yy but better for finger movement
+
+vi + ( --> when at a ( selects everything between the (..) if not on ( then it selects between the next (..) in the line. can do with ( or { or w(for word), etc...
+
+va + ( --> when at a ( selects everything between the (..) along with the brances if not on ( then it selects between + brances for the next (..) in the line. can do with ( or { or w(for word), etc...
+
+yi / ya --> same as vi/va but copies instead of just select
+di / da --> same as vi/va but deletes instead of just select
+----------------------------------------------------------------
+
+VERTICAL MOVEMENTS:
+G --> end of the file
+gg -> start of the file
+
+C-u --> half page up
+C-d --> half page down
+
+SEARCH AND NAVIGATE:
+
+/ + text --> search next occurance of text (top-bottom)
+? + text --> search previous occurance text (bottom-top)
+* --> search the word under your cursor (top-bottom)
+# --> search the word under your cursor (bottom-top)
+
+N --> moves to previous result of above cmd
+n --> moves to next result of above cmd
+
+
