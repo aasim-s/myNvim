@@ -7,3 +7,8 @@
 
 # pwd --> prints current working directory
 # ls --> lists all the files in provided dir, default is current dir
+# cat --> prints the content of all the files mentioned
+# head --> prints top n number of lines of a file default is 10
+## eg head -n 15 <file_name>
+# tail --> prints bottom  n number of lines of a file default is 10
+## eg tail -n 15 <file_name>
