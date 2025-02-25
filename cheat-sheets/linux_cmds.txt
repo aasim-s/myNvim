@@ -1,0 +1,9 @@
+# echo "text" --> prints out the text on terminal
+# whoami --> prints the current logged in user name
+# expr <expression> --> evaluates the given expression and prints the output
+# <var_name> = <value> --> sets a var with given name and value
+# $<var_name> --> gives out the var value eg. echo $<var_name>
+# history --> prints all the cmds ran on the terminal
+
+# pwd --> prints current working directory
+# ls --> lists all the files in provided dir, default is current dir
