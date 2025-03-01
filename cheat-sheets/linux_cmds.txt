@@ -9,6 +9,41 @@
 # ls --> lists all the files in provided dir, default is current dir
 # cat --> prints the content of all the files mentioned
 # head --> prints top n number of lines of a file default is 10
-## eg head -n 15 <file_name>
+## eg. head -n 15 <file_name>
+
 # tail --> prints bottom  n number of lines of a file default is 10
-## eg tail -n 15 <file_name>
+## eg. tail -n 15 <file_name>
+
+# can use less/more cmds to view one page at a time. less is same as more just with
+more features.
+## eg. more <file_name> or less <file_name>
+
+# touch cmd will modify the acess and modificationt timestamps of a file. If file
+does not exist then it creates the file. can touch multiple files.
+## eg. touch <file_names>
+
+# mkdir <dir_name> --> creates a new dir with given filepath
+# mv <path/name1> <path/name2> --> moves the file from one location to another. It
+is also used to rename files
+
+# cp cmd copies the file or dir from one location to another.
+## cp -R <path/name1> <path/name2> --> recursive copy using -R
+
+# remove command is used to delete/remove any file or directory based on option provided
+## eg. rm <dir_name> --> removes the given directory (usually not allowed)
+## eg. rm -r <dir_name> --> recursively removes given directory and anything inside it
+## eg. rm -f <file_name> --> removes the given file
+
+# grep cmd allows you to search for text in files
+## grep "text" <filepath(s)> --> search for text in given file(s)
+## grep -r "text" <dir> --> recursively search text in the dir
+
+# find cmd is used to find files and directorys by name
+## find <dir> -name <file/file_pattern> --> finds a file with given name in given dir
+
+# chmod -R u=rwx,g=rx,o= dir_name --> change permission of a directory recursively,
+# chmod  u=rwx,g=rx,o= file_name --> change permission of a file
+# chmod +X file/dir --> add permission to existing for all. use (-) to remove
+
+# chown --> change the owner of the file/directory
+## chown -R <new_user> <file/directory>
