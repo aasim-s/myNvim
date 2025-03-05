@@ -6,6 +6,6 @@ Prerequisite: install [ripgrep](https://github.com/BurntSushi/ripgrep).
 to set up forge cmd:
 
 sudo chmod +x forge
-sudo mv forge /usr/local/bin/forge
+sudo cp forge /usr/local/bin/forge
 add {export PATH="$HOME/bin:$PATH"} to .bashrc
 source ~/.bashrc

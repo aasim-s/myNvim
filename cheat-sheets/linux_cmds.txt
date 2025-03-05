@@ -47,3 +47,14 @@ is also used to rename files
 
 # chown --> change the owner of the file/directory
 ## chown -R <new_user> <file/directory>
+
+# which cmd tells you the location of an installed command line program
+## which sh
+## which forge
+
+# env --> shows all the enviornment variables that are currently set in your shell
+
+# man --> shows the manual of other programs like ls, cd etc
+## man ls
+## man pwd
+## man man --> yes man has its own manual

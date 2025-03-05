@@ -1,24 +1,42 @@
 #!/bin/bash
 
+persist=false
+config_file="$HOME/.forgeconfig"
+
 usage() {
     echo "Error: Session name is missing."
-    echo "Usage: forge -n <session_name>"
+    echo "Usage: forge [options] <session_name>"
     exit 1
 }
 
-while [[ "$#" -gt 0 ]]; do
-    case $1 in
-        -n|--name) name="$2"; shift;;
-        *) usage;;
+while getopts "np" opt; do
+    case $opt in
+        n) name_set=true ;;
+        p) persist=true ;;
+        *) usage ;;
     esac
-    shift
 done
 
-if [ -z "$name" ]; then
+shift $((OPTIND - 1))
+
+if [ -z "$1" || -z "$name_set" ]; then
     usage
 fi
 
+name="$1"
 path=$(pwd)
+
+if $persist; then
+    if [! -f "$config_file" ]; then
+        touch "$config_file"
+    fi
+
+    if grep -q "^$name=" "config_file"; then
+        sed -i "s|^$name=.*|$name=$path|" "$config_file"
+    else
+        echo "$name=$path" >> "$config_file"
+    fi
+fi
 
 tmux new-session -d -s "$name"
 
@@ -31,4 +49,5 @@ tmux send-keys -t "$name:2" "cd $path && clear" C-m
 tmux new-window -t "$name:3" -n "Smithy"
 tmux send-keys -t "$name:3" "cd ~ && clear" C-m
 
+tmux select-window -t "$name:1"
 tmux attach-session -t "$name"
