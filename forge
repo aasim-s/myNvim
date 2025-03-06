@@ -1,6 +1,8 @@
 #!/bin/bash
 
 persist=false
+delete=false
+create=false
 config_file="$HOME/.forgeconfig"
 
 usage() {
@@ -9,17 +11,18 @@ usage() {
     exit 1
 }
 
-while getopts "np" opt; do
+while getopts "npd" opt; do
     case $opt in
-        n) name_set=true ;;
+        n) name_set=true create=true;;
         p) persist=true ;;
+        d) delete=true ;;
         *) usage ;;
     esac
 done
 
 shift $((OPTIND - 1))
 
-if [ -z "$1" || -z "$name_set" ]; then
+if [ -z "$1" ] || [ "$name_set" = false ]; then
     usage
 fi
 
@@ -27,27 +30,43 @@ name="$1"
 path=$(pwd)
 
 if $persist; then
-    if [! -f "$config_file" ]; then
+    if [ ! -f "$config_file" ]; then
         touch "$config_file"
     fi
 
-    if grep -q "^$name=" "config_file"; then
+    if grep -q "^$name=" "$config_file"; then
         sed -i "s|^$name=.*|$name=$path|" "$config_file"
     else
         echo "$name=$path" >> "$config_file"
     fi
 fi
 
-tmux new-session -d -s "$name"
+if $delete; then
+    if [ ! -f "$config_file" ]; then
+        echo "There is no saved session data"
+        exit 1
+    fi
 
-tmux rename-window -t "$name:1" "Anvil"
-tmux send-keys -t "$name:1" "cd $path && nvim ." C-m
+    if grep -q "$name=" "$config_file"; then
+        sed -i "/$name=/d" "$config_file"
+        echo "Session $name removed from saved sessions"
+    else
+        echo "Session $name not found in saved sessions"
+    fi
+fi
 
-tmux new-window -t "$name:2" -n "Furnace"
-tmux send-keys -t "$name:2" "cd $path && clear" C-m
+if $create; then
+    tmux new-session -d -s "$name"
 
-tmux new-window -t "$name:3" -n "Smithy"
-tmux send-keys -t "$name:3" "cd ~ && clear" C-m
+    tmux rename-window -t "$name:1" "Anvil"
+    tmux send-keys -t "$name:1" "cd $path && nvim ." C-m
 
-tmux select-window -t "$name:1"
-tmux attach-session -t "$name"
+    tmux new-window -t "$name:2" -n "Furnace"
+    tmux send-keys -t "$name:2" "cd $path && clear" C-m
+
+    tmux new-window -t "$name:3" -n "Smithy"
+    tmux send-keys -t "$name:3" "cd ~ && clear" C-m
+
+    tmux select-window -t "$name:1"
+    tmux attach-session -t "$name"
+fi

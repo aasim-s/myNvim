@@ -58,3 +58,22 @@ is also used to rename files
 ## man ls
 ## man pwd
 ## man man --> yes man has its own manual
+
+# standard outpu and standard error are just data streams where you can write to
+## echo "Hello World" > hello.txt --> redirect std output to a file.
+## cat doesNotExist.txt 2> error.txt --> redirect std err to a file.
+
+# standard input is the place from where programs read data
+## read Name --> will take std in and store it in Name variable
+
+# can use the pipe operator (|) to pass std out of one program to std in of another program
+## echo "My name is Aasim" | wc -w
+
+# kill a program that you cannot stop with SIGINT (ctrl + c)
+## kill PID
+
+# use pricess status comt to list the processes running on your machine
+# ps aux
+
+# use top comd to see which programs are using the most resources on your machine
+## top
